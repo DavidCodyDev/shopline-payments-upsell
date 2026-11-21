@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Order confirmed — upsell preview</title>
+    <link rel="stylesheet" href="/thank-you/thank-you.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="confirmation">
+        <p class="eyebrow">Buyer thank-you surface (local stub)</p>
+        <h1>Thanks for your order</h1>
+        <p class="muted">
+          Order <span id="order-number">#1001</span> is confirmed. This page
+          simulates the thank-you / order-status host where the upsell widget mounts.
+        </p>
+      </section>
+
+      <div id="upsell-root" hidden>
+        <article class="offer">
+          <img id="offer-image" alt="" width="140" height="140" hidden />
+          <div>
+            <h2 id="offer-title"></h2>
+            <p id="offer-body"></p>
+            <p id="offer-product" class="muted"></p>
+            <button type="button" id="offer-cta">Complete this offer</button>
+            <p id="offer-note" class="note"></p>
+          </div>
+        </article>
+      </div>
+
+      <p id="empty" class="muted">Checking for an offer…</p>
+    </main>
+    <script src="/thank-you/offer-widget.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mock second checkout</title>
+    <link rel="stylesheet" href="/thank-you/thank-you.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">Mock draft-order checkout</p>
+      <h1>Second checkout (stub)</h1>
+      <p class="muted">
+        In production this URL would be the Shopline draft-order
+        <code>invoice_url</code> / checkout link. No payment is collected here.
+      </p>
+      <p id="details" class="muted"></p>
+      <p><a href="/thank-you">← Back to thank-you preview</a> · <a href="/admin">Admin</a></p>
+    </main>
+    <script>
+      const params = new URLSearchParams(location.search);
+      document.getElementById("details").textContent =
+        `draft=${params.get("draft") || "—"} · variant=${params.get("variant") || "—"}`;
+    </script>
+  </body>
+</html>
