@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thank-you upsell — merchant config</title>
+    <link rel="stylesheet" href="/admin/admin.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <header>
+        <p class="eyebrow">SHOPLINE partner app scaffold</p>
+        <h1>Thank-you upsell</h1>
+        <p class="lede">
+          Configure one product offer shown after checkout. Buyers who accept are
+          sent to a <strong>second checkout</strong> (draft order) — not a same-method
+          post-pay charge.
+        </p>
+      </header>
+
+      <form id="offer-form">
+        <label class="toggle">
+          <input type="checkbox" id="enabled" name="enabled" />
+          <span>Enable offer on thank-you / order status</span>
+        </label>
+
+        <fieldset>
+          <legend>Product</legend>
+          <label>
+            Shop handle
+            <input id="shop" name="shop" placeholder="demo-shop" />
+          </label>
+          <label>
+            Product ID
+            <input id="productId" name="productId" placeholder="Shopline product id" required />
+          </label>
+          <label>
+            Variant ID
+            <input id="variantId" name="variantId" placeholder="Shopline variant id (≠ SKU)" required />
+          </label>
+          <label>
+            Product title
+            <input id="productTitle" name="productTitle" placeholder="Display title" />
+          </label>
+          <label>
+            Image URL
+            <input id="productImageUrl" name="productImageUrl" placeholder="https://…" />
+          </label>
+          <label>
+            Discount % (display hint)
+            <input id="discountPercent" name="discountPercent" type="number" min="0" max="100" step="1" value="0" />
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Copy</legend>
+          <label>
+            Offer title
+            <input id="offerTitle" name="offerTitle" />
+          </label>
+          <label>
+            Offer body
+            <textarea id="offerBody" name="offerBody" rows="3"></textarea>
+          </label>
+          <label>
+            CTA button copy
+            <input id="ctaCopy" name="ctaCopy" />
+          </label>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit">Save offer</button>
+          <a class="secondary" href="/thank-you" target="_blank" rel="noopener">Preview buyer surface</a>
+        </div>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </form>
+    </main>
+    <script src="/admin/admin.js" type="module"></script>
+  </body>
+</html>
