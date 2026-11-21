@@ -1,11 +1,15 @@
 import { Router } from "express";
-import type { AppConfig } from "../config/env.js";
+import {
+  shouldUseLiveDraftOrder,
+  type AppConfig,
+} from "../config/env.js";
 import { buildPublicOffer, isOfferReady } from "../offer/service.js";
 import { readOffer } from "../offer/store.js";
 import { createUpsellCheckoutLink } from "../shopline/draft-order.js";
 
 export function createApiRouter(config: AppConfig): Router {
   const router = Router();
+  const live = () => shouldUseLiveDraftOrder(config);
 
   /**
    * Thank-you / order-status surface asks: should we show an offer?
@@ -20,7 +24,7 @@ export function createApiRouter(config: AppConfig): Router {
 
     const payload = buildPublicOffer({
       excludeVariantIds: exclude,
-      stub: config.useMockDraftOrder || !config.hasLiveCredentials,
+      stub: !live(),
     });
 
     res.json(payload);
@@ -62,8 +66,10 @@ export function createApiRouter(config: AppConfig): Router {
     res.json({
       ok: true,
       mode: "thank_you_second_checkout",
-      mockDraftOrder: config.useMockDraftOrder || !config.hasLiveCredentials,
+      mockDraftOrder: !live(),
       hasLiveCredentials: config.hasLiveCredentials,
+      useMockDraftOrder: config.useMockDraftOrder,
+      apiBaseConfigured: Boolean(config.apiBase || config.storeHandle),
     });
   });
 
